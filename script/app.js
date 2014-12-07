@@ -17,7 +17,7 @@
             //find the font size
          
          
-            var count=3;
+            var count=4;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -118,5 +118,12 @@
     
 })(jQuery);
 $(document).ready(function(){
-$(".canvas").lettering().particleText();
+  $.material.init();
+  $("#animateText").click(function(){
+
+      $(".canvas")
+            .html($("#inputText").val())
+            .lettering()
+            .particleText();
+  });
 });
