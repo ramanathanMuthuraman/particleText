@@ -4,6 +4,7 @@
 }
 .canvas{
 	font-size: 100px;
+	white-space: nowrap;
 }
 .replica{
 	position: relative;
