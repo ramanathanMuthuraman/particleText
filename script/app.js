@@ -67,12 +67,37 @@
 
           
             })
-            // Put your initialization code here
+           base.animate();
         };
-        base.animate = function(){
+        base.animate = function () {
+              var maxX = window.innerWidth,
+                  maxY = $(window).height();
+              $('.replica .explode').each(function (i, el) {
+                  var scaleTween, subTl;
+                  subTl = new TimelineLite({
+                      delay: i * 0.1
+                  });
+                  subTl.from($(el), 1, {
+                      css: {
+                          alpha: 0,
+                          x: Math.random() * maxX - (maxX / 2),
+                          y: Math.random() * maxY - (maxY / 2)
+                      },
+                      ease: Power3.easeInOut
+                  });
+                
+                  scaleTween = TweenMax.from($(el), 0.8, {
+                      css: {
+                          scale: Math.random() * 3,
+                          rotation: Math.random() * 360 - 180
+                      }
+                  });
+                  subTl.insert(scaleTween, 0.8);
+
+              })
 
 
-        };
+          };
         // Sample Function, Uncomment to use
         // base.functionName = function(paramaters){
         // 
