@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "jquery": "1.11",
-    "letteringjs": "~0.7.0"
+    "letteringjs": "~0.7.0",
+    "gsap": "~1.15.0"
   }
 }
