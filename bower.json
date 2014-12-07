@@ -13,6 +13,10 @@
   "dependencies": {
     "jquery": "1.11",
     "letteringjs": "~0.7.0",
-    "gsap": "~1.15.0"
+    "gsap": "~1.15.0",
+    "bootstrap-material-design": "~0.2.0"
+  },
+  "resolutions": {
+    "jquery": "1.11"
   }
 }
