@@ -1,4 +1,4 @@
 particleText
 ============
 
-Pixel level animation in text elements 
+Pixel level animation of text elements 
