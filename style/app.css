@@ -14,4 +14,6 @@
 	font-size: 100px;
 	white-space: nowrap;
 	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
 }

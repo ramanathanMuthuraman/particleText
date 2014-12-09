@@ -14,24 +14,21 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            //find the container element with className row
-            base.parent = $(el).closest(".row");
-            //get the test to be animated
-            base.text =  base.parent.find("#inputText").val();
-            //add a new div next to the parent container
-            var canvas = $("<div class='canvas'></div>").insertAfter(base.parent);
-            //set the text and call the lettering API
-            $(canvas)
-               .html(base.text)
+           
+            base.$el
+               .empty()
+               .html(base.$el.data('text'))
                .lettering();
             //wrap all the individual characters into a temporary div
-            $(canvas).find("span").wrapAll("<div class='src'></div>");
+             base.$el.find("span").wrapAll("<div class='src'></div>");
             //number of rows and columns
-            var count=4;
+            var count=2;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
-            canvas.find("span").each(function(k,val){
+            base.$el.css("height",base.$el.find(".src").height());
+            base.$el.css("width",base.$el.find(".src").width());
+            base.$el.find("span").each(function(k,val){
             var width = $(val).width();
             var height = $(val).height();
             if(!whitespace.test($(val).text())){
@@ -44,7 +41,7 @@
                      for(var j=0;j<count;j++){
                           $(val)
                                 .clone()
-                                .appendTo(canvas)
+                                .appendTo(base.$el)
                                 .wrap('<div></div>')
                                 .css({
                                         position: 'absolute',
@@ -55,7 +52,7 @@
                                 .parent()
                                 .addClass('explode')
                                 .css({
-                                        fontSize:  canvas.css("fontSize"),
+                                        fontSize:  base.$el.css("fontSize"),
                                         position: 'relative',
                                         overflow: 'hidden',
                                         width: columns,
@@ -82,7 +79,7 @@
         base.animate = function () {
               var maxX = window.innerWidth,
                   maxY = $(window).height();
-              $('.canvas .explode').each(function (i, el) {
+                  base.$el.find('.explode').each(function (i, el) {
                   var scaleTween, subTl;
                   subTl = new TimelineLite({
                       delay: i * 0.1
@@ -129,9 +126,9 @@
 })(jQuery);
 $(document).ready(function(){
   $.material.init();
-  $("#animateText").click(function(){
+//  $("#animateText").click(function(){
       
-            $(".canvas").remove();
-           $(this).particleText();
-  });
+          
+           $(".canvas").particleText();
+ // });
 });
