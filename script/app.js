@@ -54,6 +54,7 @@
                                 .css({
                                         fontSize:  base.$el.css("fontSize"),
                                         position: 'relative',
+                                        color: "#"+Math.floor(Math.random()*16777215).toString(16),
                                         overflow: 'hidden',
                                         width: columns,
                                         height:rows,
