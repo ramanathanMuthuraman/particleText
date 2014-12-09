@@ -2,12 +2,16 @@
 	margin: 0;
 	padding: 0;
 }
+.rel{
+	position: relative;
+}
+.canvas .src{
+	visibility: hidden;
+	position: absolute;
+	
+}
 .canvas{
 	font-size: 100px;
 	white-space: nowrap;
-	visibility: hidden;
-	position: absolute;
-}
-.replica{
 	position: relative;
 }
