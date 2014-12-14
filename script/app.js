@@ -26,11 +26,14 @@
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
-            base.$el.css("height",base.$el.find(".src").height());
-            base.$el.css("width",base.$el.find(".src").width());
+            var container = base.$el.find(".src");
+            var containerWidth = container.width();
+            var containerHeight = container.height();
+            base.$el.css("height",containerHeight);
+            base.$el.css("width",containerWidth);
             base.$el.find("span").each(function(k,val){
             var width = $(val).width();
-            var height = $(val).height();
+            var height = containerHeight;
             if(!whitespace.test($(val).text())){
             var rows = Math.floor(height*(1/count));
             var columns = Math.floor(width*(1/count));
