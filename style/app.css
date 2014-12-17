@@ -10,8 +10,8 @@
 	position: absolute;
 	
 }
+
 .canvas{
-	font-size: 150px;
 	white-space: nowrap;
 	position: relative;
 	overflow: hidden;

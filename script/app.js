@@ -22,6 +22,8 @@
             //wrap all the individual characters into a temporary div
              base.$el.find("span").wrapAll("<div class='src'></div>");
             //number of rows and columns
+            var scale = 50;
+            var scaleCoefficient = 4; //scaleCoefficient and top formula given by Val
             var count=2;
             var offsetX=0;
             var offsetY=0;
@@ -31,6 +33,8 @@
             var containerHeight = container.height();
             base.$el.css("height",containerHeight);
             base.$el.css("width",containerWidth);
+            base.$el.css("transform","scale("+scale+")");
+            base.$el.css("top",(scale*scaleCoefficient)+scale);
             base.$el.find("span").each(function(k,val){
             var width = $(val).width();
             var height = containerHeight;
@@ -97,13 +101,7 @@
                       ease: Power3.easeInOut
                   });
                 
-                  scaleTween = TweenMax.from($(el), 0.8, {
-                      css: {
-                          scale: Math.random() * 3,
-                          rotation: Math.random() * 360 - 180
-                      }
-                  });
-                  subTl.insert(scaleTween, 0.8);
+               
 
               })
 
@@ -129,7 +127,7 @@
     
 })(jQuery);
 $(document).ready(function(){
-  $.material.init();
+
 //  $("#animateText").click(function(){
       
           
