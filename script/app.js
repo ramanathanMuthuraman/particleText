@@ -24,7 +24,7 @@
             //number of rows and columns
             var scale = 1;
             var scaleCoefficient = 4; //scaleCoefficient and top formula given by Val
-            var count=2;
+            var count=6;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -42,7 +42,7 @@
             if(!whitespace.test($(val).text())){
             var rows = Math.floor(height*(1/count));
             var columns = Math.floor(width*(1/count));
-            var scaler = 10;
+            var scaler = 50;
                  
                 for(var i=0;i<count;i++){
                    
@@ -69,7 +69,7 @@
                                         left:offsetX,
                                         top: -offsetY
                                     });
-                                  offsetY+=10;
+                                  offsetY+=-Math.ceil((width+(width*0.01))*((scaler*0.09)));
                 }
                  
                 
