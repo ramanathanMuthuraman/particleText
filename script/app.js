@@ -22,7 +22,7 @@
             //wrap all the individual characters into a temporary div
              base.$el.find("span").wrapAll("<div class='src'></div>");
             //number of rows and columns
-            var scale = 50;
+            var scale = 1;
             var scaleCoefficient = 4; //scaleCoefficient and top formula given by Val
             var count=2;
             var offsetX=0;
@@ -33,15 +33,16 @@
             var containerHeight = container.height();
             base.$el.css("height",containerHeight);
             base.$el.css("width",containerWidth);
-            base.$el.css("transform","scale("+scale+")");
-            base.$el.css("top",(scale*scaleCoefficient)+scale);
+          //  base.$el.css("transform","scale("+scale+")");
+           // base.$el.css("top",(scale*scaleCoefficient)+scale);
+          //    base.$el.css("top",(scale*scaleCoefficient)+scale);
             base.$el.find("span").each(function(k,val){
             var width = $(val).width();
             var height = containerHeight;
             if(!whitespace.test($(val).text())){
             var rows = Math.floor(height*(1/count));
             var columns = Math.floor(width*(1/count));
-
+            var scaler = 10;
                  
                 for(var i=0;i<count;i++){
                    
@@ -53,27 +54,28 @@
                                 .css({
                                         position: 'absolute',
                                         visibility: 'visible',
-                                        left:-i*columns,
-                                        top:-j*rows
+                                     //   left:-i*columns,
+                                      //  top:-j*rows
                                 })
                                 .parent()
                                 .addClass('explode')
                                 .css({
-                                        fontSize:  base.$el.css("fontSize"),
+                                        fontSize:  scaler+'px',
                                         position: 'relative',
                                         color: "#"+Math.floor(Math.random()*16777215).toString(16),
-                                        overflow: 'hidden',
+                                        //overflow: 'hidden',
                                         width: columns,
                                         height:rows,
                                         left:offsetX,
                                         top: -offsetY
                                     });
+                                  offsetY+=10;
                 }
-                  offsetX+=columns;
-                  offsetY+=height;
+                 
+                
             }
      
-            
+             offsetX+=Math.ceil((width+(width*0.01))*((scaler*0.09)));
           }
           else
           {
@@ -90,7 +92,7 @@
                   base.$el.find('.explode').each(function (i, el) {
                   var scaleTween, subTl;
                   subTl = new TimelineLite({
-                      delay: i * 0.1
+                      delay: i * 0.01
                   });
                   subTl.from($(el), 1, {
                       css: {
