@@ -25,7 +25,7 @@
             //number of rows and columns
      
          
-            var count=6;
+            var count=2;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -41,14 +41,14 @@
           
                var rows = Math.ceil(height/count);
             var columns = Math.ceil(width/count);
-                 
+                 var letter = $("<div class='letter'></div>").appendTo(base.$el); 
                 for(var i=0;i<count;i++){
                    
                      for(var j=0;j<count;j++){
 
                           $(val)
                                 .clone()
-                                .appendTo(base.$el)
+                                .appendTo(letter)
                                 .wrap('<div></div>')
                                 .css({
                                         fontSize:  scaler+'px',
@@ -89,6 +89,21 @@
             })
            base.animate();
         };
+        base.bind = function() {
+
+          $(".letter").bind("mouseenter",base.split)
+          .bind("mouseleave",base.join);
+
+        };
+        base.split = function(e)
+        {
+          console.log($(e.currentTarget));
+
+        };
+        base.join = function(e){
+
+          console.log($(e.currentTarget));
+        };
         base.animate = function () {
               var maxX = window.innerWidth,
                   maxY = $(window).height();
@@ -109,7 +124,7 @@
                
 
               })
-
+                  base.bind();
 
           };
      
