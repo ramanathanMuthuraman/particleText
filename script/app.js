@@ -42,6 +42,7 @@
                var rows = Math.ceil(height/count);
             var columns = Math.ceil(width/count);
                  var letter = $("<div class='letter'></div>").appendTo(base.$el); 
+                 var color = "#"+Math.floor(Math.random()*16777215).toString(16);
                 for(var i=0;i<count;i++){
                    
                      for(var j=0;j<count;j++){
@@ -64,7 +65,7 @@
                                 .css({
                                         
                                         position: 'absolute',
-                                   //     color: "#"+Math.floor(Math.random()*16777215).toString(16),
+                                        color:color,
                                         overflow: 'hidden',
                                         width: columns,
                                         height:rows,

@@ -12,8 +12,11 @@
 }
 
 .canvas{
+	color: #F00;
 	white-space: nowrap;
 	position: relative;
 		margin: 0 auto;
 
+
 }
+
