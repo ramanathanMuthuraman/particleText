@@ -14,7 +14,7 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            var scaler = 30;
+            var scaler = 150;
             base.$el
                .empty()
                .html(base.$el.data('text'))
@@ -25,7 +25,7 @@
             //number of rows and columns
      
          
-            var count=2;
+            var count=5;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -59,10 +59,12 @@
                                 })
                                 .parent()
                                 .addClass('explode')
+                                .attr("data-left",(j*columns)+offsetX+"px")
+                                .attr("data-top",(i*rows)+"px")
                                 .css({
                                         
                                         position: 'absolute',
-                                        color: "#"+Math.floor(Math.random()*16777215).toString(16),
+                                   //     color: "#"+Math.floor(Math.random()*16777215).toString(16),
                                         overflow: 'hidden',
                                         width: columns,
                                         height:rows,
@@ -97,18 +99,47 @@
         };
         base.split = function(e)
         {
-          console.log($(e.currentTarget));
-
+   var maxX = window.innerWidth,
+                  maxY = $(window).height();
+                  $(e.currentTarget).find(".explode").each(function (i, el) {
+                       var subTl;
+                  subTl = new TimelineLite({
+                      delay: i * 0.01
+                  });
+                  subTl.to($(el), 1, {
+                      css: {
+                          alpha: 0,
+                          x: Math.random() * maxX - (maxX / 2),
+                          y: Math.random() * maxY - (maxY / 2)
+                      },
+                      ease: Power3.easeInOut
+                  });
+                
+                });
         };
         base.join = function(e){
 
-          console.log($(e.currentTarget));
+                  $(e.currentTarget).find(".explode").each(function (i, el) {
+                       var subTl;
+                  subTl = new TimelineLite({
+                      delay: i * 0.01
+                  });
+                  subTl.to($(el), 1, {
+                      css: {
+                        alpha:1,
+                          x: 0,
+                          y: 0
+                      },
+                      ease: Power3.easeInOut
+                  });
+                
+                });
         };
         base.animate = function () {
               var maxX = window.innerWidth,
                   maxY = $(window).height();
                   base.$el.find('.explode').each(function (i, el) {
-                  var scaleTween, subTl;
+                  var subTl;
                   subTl = new TimelineLite({
                       delay: i * 0.01
                   });

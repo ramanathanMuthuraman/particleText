@@ -8,12 +8,12 @@
 .canvas .src{
 	visibility: hidden;
 	position: absolute;
-	
+
 }
 
 .canvas{
 	white-space: nowrap;
 	position: relative;
-	/*overflow: hidden;*/
+		margin: 0 auto;
 
 }
