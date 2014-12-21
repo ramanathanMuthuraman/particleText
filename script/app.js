@@ -14,17 +14,18 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-           
+            var scaler = 90;
             base.$el
                .empty()
                .html(base.$el.data('text'))
                .lettering();
             //wrap all the individual characters into a temporary div
              base.$el.find("span").wrapAll("<div class='src'></div>");
+             base.$el.find(".src").css("fontSize",scaler+"px")
             //number of rows and columns
-            var scale = 1;
-            var scaleCoefficient = 4; //scaleCoefficient and top formula given by Val
-            var count=6;
+     
+         
+            var count=2;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -33,49 +34,49 @@
             var containerHeight = container.height();
             base.$el.css("height",containerHeight);
             base.$el.css("width",containerWidth);
-          //  base.$el.css("transform","scale("+scale+")");
-           // base.$el.css("top",(scale*scaleCoefficient)+scale);
-          //    base.$el.css("top",(scale*scaleCoefficient)+scale);
             base.$el.find("span").each(function(k,val){
             var width = $(val).width();
             var height = containerHeight;
             if(!whitespace.test($(val).text())){
-            var rows = Math.floor(height*(1/count));
-            var columns = Math.floor(width*(1/count));
-            var scaler = 50;
+          
+               var rows = Math.ceil(scaler/count);
+            var columns = Math.floor(scaler/count);
                  
                 for(var i=0;i<count;i++){
                    
                      for(var j=0;j<count;j++){
+
                           $(val)
                                 .clone()
                                 .appendTo(base.$el)
                                 .wrap('<div></div>')
                                 .css({
+                                        fontSize:  scaler+'px',
                                         position: 'absolute',
                                         visibility: 'visible',
-                                     //   left:-i*columns,
-                                      //  top:-j*rows
+                                      /*  left:0,
+                                        top:-height*2*/
                                 })
                                 .parent()
                                 .addClass('explode')
                                 .css({
-                                        fontSize:  scaler+'px',
-                                        position: 'relative',
+                                        
+                                        position: 'absolute',
                                         color: "#"+Math.floor(Math.random()*16777215).toString(16),
-                                        //overflow: 'hidden',
-                                        width: columns,
-                                        height:rows,
+                                        overflow: 'hidden',
+                                        width: width,
+                                        height:height,
                                         left:offsetX,
                                         top: -offsetY
                                     });
-                                  offsetY+=-Math.ceil((width+(width*0.01))*((scaler*0.09)));
+                                 
                 }
                  
                 
             }
-     
-             offsetX+=Math.ceil((width+(width*0.01))*((scaler*0.09)));
+        
+            // offsetX+=Math.ceil((width+(width*0.01))*((scaler*0.09)));
+            offsetX+=width 
           }
           else
           {
