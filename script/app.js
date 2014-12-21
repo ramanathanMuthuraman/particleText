@@ -14,7 +14,7 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            var scaler = 150;
+            var scaler = 50;
             base.$el
                .empty()
                .html(base.$el.data('text'))
