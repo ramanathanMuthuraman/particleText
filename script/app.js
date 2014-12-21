@@ -14,7 +14,7 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            var scaler = 90;
+            var scaler = 30;
             base.$el
                .empty()
                .html(base.$el.data('text'))
@@ -25,7 +25,7 @@
             //number of rows and columns
      
          
-            var count=2;
+            var count=6;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -39,8 +39,8 @@
             var height = containerHeight;
             if(!whitespace.test($(val).text())){
           
-               var rows = Math.ceil(scaler/count);
-            var columns = Math.floor(scaler/count);
+               var rows = Math.ceil(height/count);
+            var columns = Math.ceil(width/count);
                  
                 for(var i=0;i<count;i++){
                    
@@ -54,8 +54,8 @@
                                         fontSize:  scaler+'px',
                                         position: 'absolute',
                                         visibility: 'visible',
-                                      /*  left:0,
-                                        top:-height*2*/
+                                        left:-(j*columns),
+                                        top: -(i*rows)
                                 })
                                 .parent()
                                 .addClass('explode')
@@ -64,22 +64,24 @@
                                         position: 'absolute',
                                         color: "#"+Math.floor(Math.random()*16777215).toString(16),
                                         overflow: 'hidden',
-                                        width: width,
-                                        height:height,
-                                        left:offsetX,
-                                        top: -offsetY
+                                        width: columns,
+                                        height:rows,
+                                        left:(j*columns)+offsetX,
+                                        top: (i*rows)
                                     });
+                          
                                  
                 }
-                 
                 
+                offsetY+=height/count;
             }
         
-            // offsetX+=Math.ceil((width+(width*0.01))*((scaler*0.09)));
+            //character offest
             offsetX+=width 
           }
           else
           {
+            //space offset
              offsetX+=width;
           }
 
@@ -110,12 +112,7 @@
 
 
           };
-        // Sample Function, Uncomment to use
-        // base.functionName = function(paramaters){
-        // 
-        // };
-        
-        // Run initializer
+     
         base.init();
     };
     
