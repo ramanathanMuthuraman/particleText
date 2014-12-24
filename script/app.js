@@ -65,7 +65,7 @@
                                 .css({
                                         
                                         position: 'absolute',
-                                    //    color:color,
+                                        color:base.$el.data('color'),
                                         overflow: 'hidden',
                                         width: columns,
                                         height:rows,
