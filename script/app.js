@@ -14,7 +14,7 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            var scaler = 90;
+            var scaler = 200;
             base.$el
                .empty()
                .html(base.$el.data('text'))
@@ -25,7 +25,7 @@
             //number of rows and columns
      
          
-            var count=2;
+            var count=8;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -65,7 +65,7 @@
                                 .css({
                                         
                                         position: 'absolute',
-                                        color:color,
+                                    //    color:color,
                                         overflow: 'hidden',
                                         width: columns,
                                         height:rows,

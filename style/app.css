@@ -12,14 +12,15 @@
 }
 
 .canvas{
-	color: #F00;
+
 	white-space: nowrap;
 	position: relative;
 		margin: 0 auto;
-
+font-family: fantasy;
 
 }
 
 .explode{
-		border: 1px solid transparent;
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
 }
