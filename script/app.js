@@ -14,7 +14,7 @@
         
         base.init = function(){
             base.options = $.extend({},$.particleText.defaultOptions, options);
-            var scaler = 50;
+            var scaler = 90;
             base.$el
                .empty()
                .html(base.$el.data('text'))
@@ -25,7 +25,7 @@
             //number of rows and columns
      
          
-            var count=5;
+            var count=2;
             var offsetX=0;
             var offsetY=0;
             var whitespace = /\s/g;
@@ -90,73 +90,34 @@
 
           
             })
-           base.animate();
-        };
-        base.bind = function() {
-
-          $(".letter").bind("mouseenter",base.split)
-          .bind("mouseleave",base.join);
+           base.animate(count);
 
         };
-        base.split = function(e)
-        {
-   var maxX = window.innerWidth,
-                  maxY = $(window).height();
-                  $(e.currentTarget).find(".explode").each(function (i, el) {
-                       var subTl;
-                  subTl = new TimelineLite({
-                      delay: i * 0.01
-                  });
-                  subTl.to($(el), 1, {
-                      css: {
-                          alpha: 0,
-                          x: Math.random() * maxX - (maxX / 2),
-                          y: Math.random() * maxY - (maxY / 2)
-                      },
-                      ease: Power3.easeInOut
-                  });
-                
-                });
-        };
-        base.join = function(e){
-
-                  $(e.currentTarget).find(".explode").each(function (i, el) {
-                       var subTl;
-                  subTl = new TimelineLite({
-                      delay: i * 0.01
-                  });
-                  subTl.to($(el), 1, {
-                      css: {
-                        alpha:1,
-                          x: 0,
-                          y: 0
-                      },
-                      ease: Power3.easeInOut
-                  });
-                
-                });
-        };
-        base.animate = function () {
+       
+    
+       
+        base.animate = function (count) {
               var maxX = window.innerWidth,
                   maxY = $(window).height();
-                  base.$el.find('.explode').each(function (i, el) {
+                  base.$el.find('.letter').each(function (i, element) {
+                    $(element).find('.explode').each(function (i, el) {
                   var subTl;
-                  subTl = new TimelineLite({
-                      delay: i * 0.01
+                  subTl = new TimelineMax({
+                      delay: i/count ,
+                      repeat : -1,
+                      yoyo:true
                   });
-                  subTl.from($(el), 1, {
+                  subTl.from($(el),0.1, {
                       css: {
-                          alpha: 0,
-                          x: Math.random() * maxX - (maxX / 2),
-                          y: Math.random() * maxY - (maxY / 2)
+                          y:count
                       },
-                      ease: Power3.easeInOut
                   });
                 
                
 
-              })
-                  base.bind();
+              });
+                  });
+                  
 
           };
      
@@ -175,9 +136,9 @@
 })(jQuery);
 $(document).ready(function(){
 
-//  $("#animateText").click(function(){
+
       
           
            $(".canvas").particleText();
- // });
+
 });
